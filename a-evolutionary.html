@@ -44,7 +44,7 @@ h2{font-size:clamp(1.5rem,1.2rem + 1.4vw,2.1rem);font-weight:700}
 .util a{color:#fff;text-decoration:none}
 .util .lang a[aria-current]{color:var(--gold);font-weight:700}
 .util .lang a+a{margin-left:.6rem;padding-left:.6rem;border-left:1px solid #3A5A85}
-header.site{background:var(--charcoal-2);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 0 var(--gold)}
+header.site{background:var(--charcoal-2);color:#fff;position:sticky;top:0;z-index:80;box-shadow:0 2px 0 var(--gold)}
 header.site .wrap{display:flex;align-items:center;gap:1.5rem;min-height:72px}
 .logo img{height:44px;width:auto}
 nav.primary{margin-left:auto}
@@ -155,7 +155,7 @@ footer.site .legal{border-top:1px solid #3A5A85;padding:1rem 0;font-size:.85rem;
 @media (max-width:1080px){
   .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
   nav.primary{display:none;position:absolute;left:0;right:0;top:100%;background:var(--charcoal-2);padding:1rem;border-top:1px solid #3A5A85}
-  nav.primary.open{display:block;max-height:calc(100dvh - 88px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:1.5rem}
+  nav.primary.open{display:block;height:calc(100dvh - 88px - 76px);max-height:calc(100dvh - 88px - 76px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:1.5rem}
   nav.primary ul{flex-direction:column;gap:0}
   nav.primary a,nav.primary button{display:flex;padding:.9rem .75rem;font-size:1.05rem}
   nav.primary .sub{position:static;box-shadow:none;background:#2F5384;display:block;padding-left:1rem}
@@ -176,6 +176,11 @@ footer.site .legal{border-top:1px solid #3A5A85;padding:1rem 0;font-size:.85rem;
 }
 @media (min-width:721px){.sticky-cta{display:none}}
 @media (max-width:720px){.proto-bar{bottom:88px}}
+body.menu-open .proto-bar{display:none!important}
+body.menu-open{overflow:hidden}
+.nav-backdrop{position:fixed;inset:0;background:rgba(20,39,63,.62);z-index:55;border:0;padding:0;margin:0;cursor:pointer}
+.nav-backdrop[hidden]{display:none}
+@media (min-width:1081px){.nav-backdrop{display:none!important}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -212,6 +217,7 @@ footer.site .legal{border-top:1px solid #3A5A85;padding:1rem 0;font-size:.85rem;
     <div class="header-cta"><a class="btn btn-primary" href="#">Ghi danh</a></div>
   </div>
 </header>
+<button class="nav-backdrop" id="navBackdrop" hidden aria-label="Đóng menu" onclick="closeMenu()"></button>
 
 <main id="main">
 <section class="hero" style="padding:0">
@@ -359,7 +365,9 @@ footer.site .legal{border-top:1px solid #3A5A85;padding:1rem 0;font-size:.85rem;
 <script>
 document.documentElement.lang='vi';
 if(document.documentElement.hasAttribute('data-frame')){document.body.classList.add('in-frame')}
-function toggleMenu(b){const n=document.getElementById('primary-nav');const o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)}
+function toggleMenu(b){const n=document.getElementById('primary-nav');const o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);document.body.classList.toggle('menu-open',o);document.getElementById('navBackdrop').hidden=!o}
+function closeMenu(){const b=document.querySelector('.menu-toggle');if(document.getElementById('primary-nav').classList.contains('open'))toggleMenu(b)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 document.querySelectorAll('nav.primary > ul > li > button').forEach(b=>b.addEventListener('click',()=>{const e=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!e);b.nextElementSibling.style.display=e?'':'block'}));
 function toggleMobile(){const p=document.getElementById('mobilePanel');if(p.hidden){const html='<!doctype html><html lang="vi" data-frame="1">'+document.documentElement.innerHTML+'</html>';document.getElementById('mobileFrame').srcdoc=html;p.hidden=false}else{p.hidden=true}}
 </script>
