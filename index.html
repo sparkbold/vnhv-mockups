@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VNHV — Ba hướng thiết kế trang chủ</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Lora:wght@600&display=swap">
+<style>
+body{margin:0;background:#FBFAF7;color:#1B2F4B;font-family:"Be Vietnam Pro",system-ui,sans-serif;line-height:1.6}
+main{max-width:960px;margin:0 auto;padding:3rem 1.25rem}
+h1{font-family:Lora,Georgia,serif;font-size:2rem;margin:0 0 .5rem}
+p.lead{color:#4E607A;max-width:60ch;margin:0 0 2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+a.card{display:block;background:#fff;border:1px solid #E1DBCD;border-radius:12px;padding:1.5rem;text-decoration:none;color:inherit;border-top:6px solid var(--c)}
+a.card:hover{box-shadow:0 10px 26px rgba(20,39,63,.12)}
+a.card:focus-visible{outline:3px solid #1D4ED8;outline-offset:3px}
+a.card b{display:block;font-family:Lora,Georgia,serif;font-size:1.3rem;margin-bottom:.4rem}
+a.card span{font-size:.95rem;color:#4E607A}
+.note{margin-top:2.5rem;font-size:.9rem;color:#4E607A;border-top:1px solid #E1DBCD;padding-top:1rem}
+.note a{color:#1F3A5F}
+</style>
+</head>
+<body>
+<main>
+<h1>Trường Việt Ngữ Hùng Vương — ba hướng thiết kế trang chủ</h1>
+<p class="lead">Bản mẫu (prototype) responsive để ban điều hành so sánh. Mỗi trang có nút “📱 Xem bản mobile” và bảng trạng thái tương tác ở cuối. Nội dung chưa có thật được đánh dấu [PLACEHOLDER].</p>
+<div class="grid">
+  <a class="card" href="a-evolutionary.html" style="--c:#E0A400"><b>A — Evolutionary Refresh</b><span>Giữ cấu trúc quen thuộc và logo vàng; nền navy thay đen; sửa hero, tương phản và mobile.</span></a>
+  <a class="card" href="b-conversion.html" style="--c:#2E7D4F"><b>B — Conversion-Focused</b><span>Màn hình đầu trả lời học gì · cho ai · khi nào · học phí · ghi danh. Xanh tre cho hành động chính. Hướng được đề xuất.</span></a>
+  <a class="card" href="c-bold.html" style="--c:#1F3A5F"><b>C — Bold Modern Rebuild</b><span>Chữ Lora cỡ lớn, nền navy đậm, dải hành trình 40 năm, khối song ngữ.</span></a>
+</div>
+<p class="note">Kế hoạch đầy đủ (đối chiếu 3 audit, lộ trình, backlog): <a href="docs/vnhv-rebuild-plan.md">docs/vnhv-rebuild-plan.md</a>. Bảng màu: navy #1F3A5F / #14273F, xanh tre #2E7D4F, vàng logo #E0A400. Logo, tên trường và trích dẫn học sinh thuộc về Trường Việt Ngữ Hùng Vương.</p>
+</main>
+</body>
+</html>

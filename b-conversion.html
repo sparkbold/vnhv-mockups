@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VNHV Direction B — Conversion-Focused</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:wght@600;700&display=swap">
+<style>
+:root{
+  --red:#2E7D4F; --red-hover:#256A42; --red-active:#1E5636; --ink:#1B2F4B; --ink-2:#4E607A; --navy:#1F3A5F; --gold:#8F6E2C; --gold-bg:#F4EBD3;
+  --paper:#FBFAF7; --white:#FFFFFF; --line:#E1DBCD; --green:#2E7D4F; --green-bg:#E4F2EA; --focus:#1D4ED8; --dark:#14273F;
+  --font:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --display:"Lora",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6}
+body.in-frame .proto{display:none}
+img{max-width:100%;display:block}
+a{color:var(--red)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:.6rem 1rem;z-index:100}.skip:focus{left:8px}
+.wrap{width:min(1160px,100% - 2rem);margin-inline:auto}
+h1,h2,h3{line-height:1.2;text-wrap:balance;margin:0}
+h1{font-family:var(--display)} h2{font-family:var(--display);font-size:clamp(1.6rem,1.2rem + 1.6vw,2.25rem);font-weight:700}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;min-height:50px;padding:.75rem 1.5rem;border-radius:8px;font:inherit;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .15s,box-shadow .15s}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red-hover);box-shadow:0 6px 16px rgba(46,125,79,.3)}
+.btn-primary:active{background:var(--red-active);box-shadow:none}
+.btn-secondary{background:var(--white);color:var(--navy);border-color:var(--navy)}
+.btn-secondary:hover{background:var(--navy);color:#fff}
+.btn-ghost{background:transparent;color:var(--red);border-color:var(--red)}
+.btn-ghost:hover{background:var(--red);color:#fff}
+.btn[aria-disabled="true"]{background:#B9B3A6;color:#fff;cursor:not-allowed;box-shadow:none}
+.pill{display:inline-block;padding:.2rem .6rem;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.02em}
+.pill-open{background:var(--green-bg);color:var(--green)}
+.pill-soon{background:var(--gold-bg);color:var(--gold)}
+/* header */
+.util{background:var(--dark);color:#E6E0D2;font-size:.85rem}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;min-height:40px;gap:1rem;flex-wrap:wrap}
+.util a{color:#fff;text-decoration:none}.util a[aria-current]{color:#F2C14E;font-weight:700}
+.util .lang a+a{margin-left:.6rem;padding-left:.6rem;border-left:1px solid #3A5A85}
+header.site{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+header.site .wrap{display:flex;align-items:center;gap:1.25rem;min-height:76px}
+.brand{display:flex;align-items:center;text-decoration:none;flex:none;min-width:0}
+.brand .logo-bg{display:block;background:var(--dark);border-radius:8px;padding:.45rem .7rem}
+.brand img{height:34px;width:auto}
+.brand .mark{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#F2C14E,#B8860B 70%);flex:none;display:grid;place-items:center;color:#14273F;font-weight:800;font-size:.75rem}
+.brand b{display:block;font-family:var(--display);font-size:1.05rem;line-height:1.1}
+.brand small{display:block;font-size:.72rem;color:var(--ink-2);letter-spacing:.04em}
+nav.primary{margin-left:auto}
+nav.primary ul{list-style:none;margin:0;padding:0;display:flex;gap:.1rem}
+nav.primary a,nav.primary button{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:.6rem .55rem;border-radius:6px;background:none;border:0;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;gap:.3rem;align-items:center}
+nav.primary a:hover,nav.primary button:hover{background:var(--paper);color:var(--red)}
+nav.primary li{position:relative}
+nav.primary > ul > li > a,nav.primary > ul > li > button{white-space:nowrap}
+nav.primary .sub{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:250px;padding:.5rem;border:1px solid var(--line);border-radius:8px;box-shadow:0 14px 30px rgba(20,39,63,.15);list-style:none;margin:0}
+nav.primary li:hover>.sub,nav.primary li:focus-within>.sub{display:block}
+nav.primary .sub a{display:block;font-weight:500}
+.header-cta{display:flex;gap:.5rem}
+.menu-toggle{display:none;margin-left:auto;background:none;border:2px solid var(--ink);color:var(--ink);border-radius:8px;min-width:48px;min-height:48px;font:inherit;font-weight:700;cursor:pointer}
+/* hero */
+.hero{background:var(--white);border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:clamp(2.5rem,6vw,4.5rem) 0}
+.hero h1{font-size:clamp(2.1rem,1.4rem + 3vw,3.5rem);font-weight:700;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero .lead{font-size:1.15rem;color:var(--ink-2);max-width:50ch;margin:1rem 0 1.5rem}
+.hero .actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero .photo{aspect-ratio:4/3;border-radius:14px;background:linear-gradient(140deg,#E9DFC4,#C9A961 60%,#8F6E2C);position:relative;overflow:hidden}
+.hero .photo::after{content:"[PLACEHOLDER: ảnh thật học sinh trong lớp · 1200×900 WebP · cần giấy đồng ý sử dụng hình]";position:absolute;inset:auto 1rem 1rem;background:rgba(20,39,63,.7);color:#fff;font-size:.75rem;padding:.4rem .6rem;border-radius:6px}
+.keyfacts{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;background:var(--white);overflow:hidden;margin-top:-2rem;position:relative;z-index:2}
+.keyfacts div{padding:1rem 1.25rem;border-right:1px solid var(--line)}
+.keyfacts div:last-child{border-right:0}
+.keyfacts span{display:block;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
+.keyfacts b{font-size:1.1rem;font-weight:700}
+/* deadline */
+.deadline{background:var(--gold-bg);border:1px solid #E5D5A8;border-radius:12px;padding:1.25rem 1.5rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center}
+.deadline ol{margin:.4rem 0 0;padding-left:1.2rem;display:grid;gap:.15rem}
+.deadline li b{font-variant-numeric:tabular-nums}
+section{padding:clamp(2.5rem,6vw,4.5rem) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.75rem;flex-wrap:wrap}
+.sec-head p{margin:.35rem 0 0;color:var(--ink-2);max-width:60ch}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden;transition:box-shadow .15s,transform .15s}
+.card:hover{box-shadow:0 10px 26px rgba(20,39,63,.1);transform:translateY(-2px)}
+.card .ph{aspect-ratio:16/9;background:linear-gradient(135deg,#EFE7D2,#D8C9A0);display:grid;place-items:center;color:#6B5A2E;font-size:.8rem;text-align:center;padding:1rem}
+.card .body{padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.card h3{font-size:1.2rem}
+.card .meta{font-size:.9rem;color:var(--ink-2)}
+.card ul{margin:0;padding-left:1.1rem;font-size:.95rem;color:var(--ink-2)}
+.card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.75rem}
+.card .foot a{font-weight:700;text-decoration:none}.card .foot a:hover{text-decoration:underline}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;counter-reset:s}
+.step{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:1.25rem;position:relative;counter-increment:s}
+.step::before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;margin-bottom:.75rem}
+.step h3{font-size:1.05rem;margin-bottom:.3rem}.step p{margin:0;font-size:.95rem;color:var(--ink-2)}
+/* event */
+.event{background:var(--navy);color:#fff;border-radius:14px;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;padding:2rem}
+.event .date{text-align:center;background:#fff;color:var(--ink);border-radius:10px;padding:.75rem 1rem;min-width:96px}
+.event .date b{display:block;font-size:2rem;line-height:1;font-family:var(--display)}
+.event .date span{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.event h3{font-family:var(--display);font-size:1.6rem}
+.event p{margin:.35rem 0 0;color:#D6DEEA}
+.event .price{color:#F2C14E;font-weight:700}
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.trust div{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:1.25rem;text-align:center}
+.trust b{display:block;font-size:2.2rem;font-family:var(--display);color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.1}
+.trust span{font-size:.9rem;color:var(--ink-2)}
+.quote{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.quote p{margin:0;font-family:var(--display);font-size:1.1rem}
+.quote footer{font-size:.9rem;color:var(--ink-2)}
+/* dual CTA */
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.dual div{border-radius:12px;padding:2rem;display:flex;flex-direction:column;gap:.75rem}
+.dual .give{background:var(--navy);color:#fff}
+.dual .give a{background:#fff;color:var(--navy)}
+.dual .vol{background:var(--white);border:1px solid var(--line)}
+.dual h3{font-family:var(--display);font-size:1.5rem}
+.dual p{margin:0}
+/* footer */
+footer.site{background:var(--dark);color:#C9D3E0;font-size:.95rem}
+footer.site .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:2rem;padding:3rem 0 2rem}
+footer.site h3{color:#fff;font-size:.85rem;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.1em}
+footer.site a{color:#fff}
+footer.site ul{list-style:none;padding:0;margin:0;display:grid;gap:.4rem}
+footer.site .legal{border-top:1px solid #3A5A85;padding:1rem 0;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+/* forms */
+.field{display:grid;gap:.35rem;margin-bottom:1rem}
+.field label{font-weight:600}
+.field input,.field select{font:inherit;padding:.7rem .8rem;border:2px solid #8E8778;border-radius:8px;min-height:48px;background:#fff}
+.field input:focus{outline:3px solid var(--focus);outline-offset:2px}
+.field.error input{border-color:var(--red)}
+.field .err{color:var(--red);font-size:.9rem;font-weight:600}
+.field .hint{font-size:.85rem;color:var(--ink-2)}
+/* proto */
+.proto-bar{position:fixed;right:1rem;bottom:1rem;z-index:200}
+.proto-bar button{background:var(--ink);color:#fff;border:0;border-radius:999px;padding:.6rem 1rem;font:inherit;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.proto-panel{position:fixed;inset:0;background:rgba(27,36,49,.85);z-index:190;display:grid;place-items:center;padding:1rem}
+.proto-panel[hidden]{display:none}
+.proto-panel iframe{width:390px;height:min(820px,92vh);border:10px solid #14273F;border-radius:32px;background:#fff}
+.proto-note{background:#FFF7DB;border:1px dashed var(--gold);padding:.75rem 1rem;border-radius:8px;font-size:.9rem}
+.states{background:var(--white);border-top:4px solid var(--red)}
+.states .row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:.75rem 0}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem}
+.sw{border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:.8rem}.sw div{height:56px}.sw p{margin:0;padding:.5rem}
+.focus-demo{outline:3px solid var(--focus);outline-offset:3px}
+.sticky-cta{display:none}
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr}
+  .keyfacts{grid-template-columns:1fr 1fr;margin-top:1rem}
+  .keyfacts div:nth-child(2){border-right:0}.keyfacts div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .steps,.trust{grid-template-columns:1fr 1fr}
+  .event{grid-template-columns:auto 1fr}.event .btn{grid-column:1/-1}
+  footer.site .wrap{grid-template-columns:1fr 1fr}
+}
+@media (max-width:1080px){
+  .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+  nav.primary{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;padding:1rem;border-bottom:1px solid var(--line);box-shadow:0 20px 30px rgba(0,0,0,.15)}
+  nav.primary.open{display:block}
+  nav.primary ul{flex-direction:column}
+  nav.primary a,nav.primary button{display:flex;padding:.9rem .75rem;font-size:1.05rem;width:100%}
+  nav.primary .sub{position:static;box-shadow:none;border:0;display:block;padding-left:1rem;background:var(--paper)}
+  .header-cta .btn-ghost{display:none}
+}
+@media (max-width:720px){
+  body{font-size:16px;padding-bottom:80px}
+  .header-cta{display:none}
+  .grid-3,.steps,.trust,.dual{grid-template-columns:1fr}
+  .deadline{grid-template-columns:1fr}
+  .event{grid-template-columns:1fr;text-align:left}.event .date{width:max-content}
+  footer.site .wrap{grid-template-columns:1fr}
+  .hero h1{max-width:none}
+  .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:.6rem 1rem;gap:.5rem;z-index:60;box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+  .sticky-cta .btn{flex:1}
+}
+@media (max-width:720px){.proto-bar{bottom:88px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.card:hover{transform:none}}
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung chính · Skip to content</a>
+
+<div class="util"><div class="wrap">
+  <span>Chủ nhật 9:00–12:00 · HCC Central, 1300 Holman St · <a href="tel:+12812218018">(281) 221-8018</a></span>
+  <span class="lang"><a href="#" aria-current="true" lang="vi">Tiếng Việt</a><a href="#" lang="en">English</a></span>
+</div></div>
+
+<header class="site"><div class="wrap">
+  <a class="brand" href="#" aria-label="Trường Việt Ngữ Hùng Vương – trang nhà"><span class="logo-bg"><img src="data:image/png;base64,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" alt="" width="272" height="54"></span></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" onclick="toggleMenu(this)">☰ Menu</button>
+  <nav class="primary" id="primary-nav" aria-label="Chính"><ul>
+    <li><button aria-expanded="false">Chương trình ▾</button><ul class="sub"><li><a href="#">Cấp 1 (MG–lớp 5)</a></li><li><a href="#">Cấp 2 (lớp 6–9)</a></li><li><a href="#">Người lớn</a></li><li><a href="#">Lớp nào phù hợp?</a></li></ul></li>
+    <li><button aria-expanded="false">Ghi danh ▾</button><ul class="sub"><li><a href="#">Học sinh mới</a></li><li><a href="#">Học sinh cũ (có số danh bạ)</a></li><li><a href="#">Học phí &amp; hạn chót</a></li><li><a href="#">Hỏi &amp; Trả lời</a></li></ul></li>
+    <li><button aria-expanded="false">Sinh hoạt ▾</button><ul class="sub"><li><a href="#">Lịch trình 2026-2027</a></li><li><a href="#">Sự kiện</a></li><li><a href="#">Dạ tiệc 40 năm</a></li><li><a href="#">Tin tức</a></li></ul></li>
+    <li><button aria-expanded="false">Cộng đồng ▾</button><ul class="sub"><li><a href="#">Hội Phụ Huynh</a></li><li><a href="#">Tình nguyện · Phụ giáo</a></li><li><a href="#">Cựu học sinh</a></li><li><a href="#">Lịch sử &amp; Kỷ yếu</a></li></ul></li>
+    <li><a href="#">Giới thiệu</a></li>
+    <li><a href="#">Liên lạc</a></li>
+  </ul></nav>
+  <div class="header-cta"><a class="btn btn-ghost" href="#" style="min-height:44px">Ủng hộ</a><a class="btn btn-primary" href="#" style="min-height:44px">Ghi danh</a></div>
+</div></header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill pill-open">● Ghi danh 2026-2027 đang mở</span>
+      <h1 style="margin-top:.75rem">Lớp tiếng Việt cho các em <em>mỗi sáng Chủ nhật</em> tại Houston</h1>
+      <p class="lead">Từ Mẫu giáo đến lớp 9, và lớp người lớn. Thầy cô tình nguyện, 40 năm kinh nghiệm, ngay tại HCC Central. <span lang="en">Vietnamese language &amp; culture classes for kids, teens and adults — Sundays 9–12 at HCC Central.</span></p>
+      <div class="actions"><a class="btn btn-primary" href="#">Ghi danh ngay · Enroll now</a><a class="btn btn-secondary" href="#">Xem chương trình</a></div>
+    </div>
+    <div class="photo" role="img" aria-label="Ảnh học sinh trong lớp (placeholder)"></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="keyfacts" aria-label="Thông tin nhanh">
+    <div><span>Khi nào</span><b>Chủ nhật 9:00–12:00</b></div>
+    <div><span>Ở đâu</span><b>HCC Central · Building G, phòng 112</b></div>
+    <div><span>Học phí</span><b>$200 sớm · $230 sau 1/7</b></div>
+    <div><span>Khai giảng</span><b>16 tháng 8, 2026</b></div>
+  </div>
+</div>
+
+<section style="padding-top:2rem">
+  <div class="wrap">
+    <div class="deadline" role="region" aria-label="Hạn ghi danh">
+      <div><strong style="font-size:1.1rem">Ghi danh sớm để được ưu tiên xếp lớp</strong>
+        <ol><li><b>$200</b> — ghi danh trước 30 tháng 6</li><li><b>$230</b> — từ 1 tháng 7 đến 14 tháng 8</li><li>Khai giảng <b>16/8/2026</b> · Học sinh cũ cần số danh bạ</li></ol>
+        <span lang="en" style="font-size:.9rem;color:var(--ink-2)">Early-bird $200 before June 30; $230 July 1–Aug 14.</span></div>
+      <a class="btn btn-primary" href="#">Bắt đầu ghi danh</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Chương trình</span><h2>Chọn lớp theo tuổi và trình độ</h2><p>Chưa chắc lớp nào? Trả lời 3 câu hỏi để biết lớp gợi ý, hoặc chọn "thi xếp lớp" khi ghi danh.</p></div><a class="btn btn-secondary" href="#">Lớp nào phù hợp?</a></div>
+    <div class="grid-3">
+      <article class="card"><div class="ph">[PLACEHOLDER ảnh lớp cấp 1]</div><div class="body"><h3>Việt ngữ cấp 1</h3><span class="meta">Mẫu giáo → lớp 5 · lớp 1C cho tuổi 13–17 mới bắt đầu</span><ul><li>Ghép âm, đánh vần, chính tả, tập đọc</li><li>Bộ sách "Tiếng Nước Tôi" (MG–lớp 3)</li><li>Flash cards, ô chữ, học hát</li></ul><div class="foot"><span class="pill pill-open">Còn chỗ</span><a href="#">Chi tiết →</a></div></div></article>
+      <article class="card"><div class="ph">[PLACEHOLDER ảnh lớp cấp 2]</div><div class="body"><h3>Việt ngữ cấp 2</h3><span class="meta">Lớp 6 → lớp 9 · bằng tốt nghiệp lớp 9</span><ul><li>Đàm thoại &amp; ngữ vựng qua chuyện ngụ ngôn</li><li>Tài liệu do ban Tu Thư biên soạn</li><li>Tốt nghiệp có thể trở lại làm phụ giáo</li></ul><div class="foot"><span class="pill pill-open">Còn chỗ</span><a href="#">Chi tiết →</a></div></div></article>
+      <article class="card"><div class="ph">[PLACEHOLDER ảnh lớp người lớn]</div><div class="body"><h3>Việt ngữ người lớn</h3><span class="meta">Người lớn · bạn đời · người nước ngoài</span><ul><li>Giao tiếp căn bản và văn hoá Việt</li><li>Cùng giờ với lớp các em</li><li>[PLACEHOLDER: số buổi / giáo trình — xác nhận với thầy cô]</li></ul><div class="foot"><span class="pill pill-soon">Xác nhận chỗ</span><a href="#">Chi tiết →</a></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Cách ghi danh</span><h2>Bốn bước, khoảng 10 phút</h2><p>Một mẫu đơn trực tuyến thay cho email, file Word và cổng riêng. Học sinh cũ chỉ cần số danh bạ.</p></div></div>
+    <div class="steps">
+      <div class="step"><h3>Học sinh mới hay cũ?</h3><p>Học sinh cũ nhập số danh bạ. Học sinh mới điền thông tin.</p></div>
+      <div class="step"><h3>Thông tin &amp; xếp lớp</h3><p>Tên, ngày sinh, lớp sơ cấp hay thi xếp lớp. Nhiều em trong một gia đình.</p></div>
+      <div class="step"><h3>Đồng ý &amp; nội quy</h3><p>Nội quy học sinh, đồng ý sử dụng hình ảnh, chính sách bảo mật.</p></div>
+      <div class="step"><h3>Học phí &amp; xác nhận</h3><p>Trả trực tuyến; nhận email xác nhận song ngữ và biên nhận.</p></div>
+    </div>
+    <p style="margin:1.25rem 0 0;font-size:.9rem;color:var(--ink-2)">Không thể ghi danh trực tuyến? Gọi (281) 221-8018 hoặc tải mẫu đơn PDF (đường dẫn dự phòng ở cuối trang Ghi danh).</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Sự kiện sắp tới</span><h2>Dạ tiệc Kỷ niệm 40 năm</h2></div><a href="#" style="font-weight:700">Tất cả sự kiện &amp; lịch →</a></div>
+    <div class="event">
+      <div class="date"><span>Th 10</span><b>24</b><span>Thứ Bảy</span></div>
+      <div><h3>Hành Trình 40 Năm – Một Ngôn Ngữ – Một Văn Hoá – Muôn Thế Hệ</h3><p>5:00–11:00 tối · Ocean Palace, 11215 Bellaire Blvd, Houston, TX 77072 · <span class="price">$80 / người · $800 / bàn</span></p><p style="font-size:.9rem">Diễn giả: LS Đinh Mai Cindy, TS Đào Khoa Tâm · Ca sĩ Hồ Hoàng Yến · Liên lạc <a href="mailto:HV40@vnhv.org" style="color:#F2C14E">HV40@vnhv.org</a></p></div>
+      <a class="btn btn-primary" href="https://www.zeffy.com/en-US/ticketing/hung-vuong-40-year-anniversary-gala">Mua vé · Buy tickets</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Vì sao gia đình tin tưởng</span><h2>40 năm, tất cả thầy cô đều tình nguyện</h2></div></div>
+    <div class="trust">
+      <div><b>279</b><span>học sinh đang học</span></div><div><b>41</b><span>thầy cô tình nguyện</span></div><div><b>22</b><span>lớp mỗi Chủ nhật</span></div><div><b>1986</b><span>thành lập tại Rice University</span></div>
+    </div>
+    <div class="grid-3" style="margin-top:1.25rem">
+      <blockquote class="quote" style="margin:0"><p>"Tôi là người Việt Nam nên tôi cần học tiếng Việt để giao tiếp và hiểu được đất nước và phong tục."</p><footer>Ngọc Trân · lớp 5B</footer></blockquote>
+      <blockquote class="quote" style="margin:0"><p>"Chúng tôi rất tự hào về các học sinh, thầy cô và nền tảng văn hoá đã xây dựng gần 40 năm tại Trường Việt Ngữ Hùng Vương ở Houston."</p><footer>Thầy Hiệu trưởng Phạm Thế Vượng</footer></blockquote>
+      <blockquote class="quote" style="margin:0"><p>[PLACEHOLDER — trích một chia sẻ phụ huynh; site hiện chỉ có 15 chia sẻ của học sinh tại /testimonials/]</p><footer>Phụ huynh · [tên, lớp]</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="dual">
+      <div class="give"><span class="eyebrow" style="color:#F2C14E">Hỗ trợ · Support</span><h3>Ủng hộ quỹ học bổng phụ giáo</h3><p>Trường là hội đoàn vô vị lợi 501(c)(3), EIN 76-0322140. Quà tặng được khấu trừ thuế; có thể cho một lần hoặc hằng tháng.</p><p style="font-size:.9rem;opacity:.9">Chi phiếu: Hung Vuong Corporation, PO Box 721111, Houston, TX 77272-1111</p><div><a class="btn" href="#">Ủng hộ trực tuyến</a></div></div>
+      <div class="vol"><span class="eyebrow">Tình nguyện · Volunteer</span><h3>Làm thầy cô hoặc phụ giáo</h3><p>Học sinh trung học được tính giờ phục vụ cộng đồng. Cựu học sinh lớp 9 được ưu tiên vào chương trình Học Bổng Phụ Giáo.</p><div style="margin-top:auto"><a class="btn btn-ghost" href="#">Đăng ký tình nguyện</a></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div><img src="data:image/png;base64,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" alt="Trường Việt Ngữ Hùng Vương" width="220" style="margin-bottom:1rem"><p style="margin:0">Hội đoàn vô vị lợi IRS 501(c)(3) · EIN 76-0322140.<br>Bảo tồn văn hoá Việt Nam tại Houston từ 1986.</p></div>
+    <div><h3>Liên lạc</h3><ul><li><a href="tel:+12812218018">(281) 221-8018</a></li><li><a href="mailto:support@vnhv.org">support@vnhv.org</a></li><li>Chủ nhật 9:00–12:00 · Phòng 112, Building G</li><li>1300 Holman St, Houston, TX 77004</li><li>Đậu xe: lot 7, 12 hoặc garage P (Alabama St)</li></ul></div>
+    <div><h3>Ghi danh</h3><ul><li><a href="#">Học sinh mới</a></li><li><a href="#">Học sinh cũ</a></li><li><a href="#">Học phí &amp; hạn chót</a></li><li><a href="#">Hỏi &amp; Trả lời</a></li><li><a href="#">Chính sách bảo mật</a></li></ul></div>
+    <div><h3>Cộng đồng</h3><ul><li><a href="https://www.facebook.com/VietNguHungVuong/">Facebook</a></li><li><a href="#">Hội Phụ Huynh</a></li><li><a href="#">Tình nguyện</a></li><li><a href="#">Cựu học sinh · Kỷ yếu</a></li><li><a href="#">Ủng hộ</a></li></ul></div>
+  </div>
+  <div class="wrap legal"><span>© 2026 Trường Việt Ngữ Hùng Vương</span><span lang="en">Hung Vuong Vietnamese Language &amp; Cultural School, Houston, Texas</span></div>
+</footer>
+
+<div class="sticky-cta"><a class="btn btn-primary" href="#">Ghi danh</a><a class="btn btn-secondary" href="#">Vé Gala</a></div>
+
+<section class="states proto" aria-labelledby="st">
+  <div class="wrap">
+    <span class="eyebrow">Ghi chú prototype · Hướng B</span>
+    <h2 id="st">Hệ màu, chữ và trạng thái tương tác</h2>
+    <p class="proto-note">Nguyên tắc: màn hình đầu trả lời "học gì · cho ai · khi nào · bao nhiêu · ghi danh ở đâu". Xanh tre (màu đồng phục thầy cô) là màu hành động chính duy nhất; navy làm nền tối, chữ và nút phụ; vàng của logo chỉ làm nhãn/điểm nhấn (trên trắng dùng sắc đậm #8F6E2C 5.9:1). Không có màu đen. Mobile có thanh Ghi danh cố định. Chữ: Be Vietnam Pro (UI) + Lora (tựa).</p>
+    <div class="swatches">
+      <div class="sw"><div style="background:#2E7D4F"></div><p>Bamboo green #2E7D4F (hành động chính; chữ trắng 5.1:1)</p></div>
+      <div class="sw"><div style="background:#1F3A5F"></div><p>Navy #1F3A5F (nền sự kiện/ủng hộ, nút phụ; chữ trắng 10:1)</p></div>
+      <div class="sw"><div style="background:#14273F"></div><p>Navy deep #14273F (thanh trên, footer)</p></div>
+      <div class="sw"><div style="background:#1B2F4B"></div><p>Navy text #1B2F4B (chữ, 13:1)</p></div>
+      <div class="sw"><div style="background:#8F6E2C"></div><p>Gold #8F6E2C (nhãn, 5.9:1)</p></div>
+      <div class="sw"><div style="background:#F4EBD3"></div><p>Gold tint #F4EBD3 (nền hạn chót)</p></div>
+      <div class="sw"><div style="background:#FBFAF7;border-bottom:1px solid #eee"></div><p>Rice paper #FBFAF7 (nền)</p></div>
+      <div class="sw"><div style="background:#E4F2EA"></div><p>Green tint #E4F2EA (nhãn "đang mở")</p></div>
+    </div>
+    <h3 style="margin-top:1.5rem">Nút</h3>
+    <div class="row"><a class="btn btn-primary" href="#">Mặc định</a><a class="btn btn-primary" href="#" style="background:#256A42;box-shadow:0 6px 16px rgba(46,125,79,.3)">Hover</a><a class="btn btn-primary focus-demo" href="#">Focus</a><a class="btn btn-primary" href="#" style="background:#1E5636">Active</a><a class="btn btn-primary" href="#" aria-disabled="true">Ghi danh đã đóng</a></div>
+    <div class="row"><a class="btn btn-secondary" href="#">Phụ</a><a class="btn btn-secondary" href="#" style="background:#1F3A5F;color:#fff">Phụ · hover</a><a class="btn btn-ghost" href="#">Viền xanh</a><a class="btn btn-ghost focus-demo" href="#">Viền · focus</a></div>
+    <h3>Nhãn trạng thái</h3>
+    <div class="row"><span class="pill pill-open">● Ghi danh đang mở</span><span class="pill pill-soon">Sắp mở · 1/6/2027</span><span class="pill" style="background:#E6E1D6;color:#4E607A">Đã đóng · 14/8</span></div>
+    <h3>Biểu mẫu ghi danh (nhãn thật, lỗi bằng chữ, song ngữ)</h3>
+    <form style="max-width:440px" onsubmit="return false">
+      <div class="field"><label for="b1">Học sinh mới hay cũ? · <span lang="en">New or returning?</span></label><select id="b1"><option>Học sinh mới · New student</option><option>Học sinh cũ (có số danh bạ) · Returning</option></select></div>
+      <div class="field error"><label for="b2">Ngày sinh · <span lang="en">Date of birth</span></label><input id="b2" aria-invalid="true" aria-describedby="b2e" value="13/2019"><span class="hint">Ví dụ: February 13, 2019</span><span class="err" id="b2e">Thiếu ngày. <span lang="en">Please enter month, day and year.</span></span></div>
+      <div class="field"><label for="b3">Email phụ huynh · <span lang="en">Parent email</span></label><input id="b3" type="email" placeholder="ten@example.com"></div>
+      <button class="btn btn-primary" type="submit">Tiếp tục · Continue</button>
+    </form>
+    <h3>Khả năng tiếp cận</h3>
+    <ul><li>Một &lt;h1&gt;; lang="vi" gốc, lang="en" trên đoạn tiếng Anh; skip link; landmarks.</li><li>Trạng thái không chỉ bằng màu: nhãn có chữ + chấm; lỗi form có chữ và aria-describedby.</li><li>Xanh tre và navy đều đạt AA với chữ trắng (5.1:1 / 10:1); vàng không bao giờ là chữ trên nền sáng ngoài sắc đậm. Tất cả chữ ≥ 4.5:1, nút ≥ 3:1 với nền; focus 3px; mục tiêu chạm ≥ 44px; thanh CTA cố định không che nội dung (padding-bottom).</li><li>Card hover chỉ đổ bóng — tắt khi prefers-reduced-motion.</li></ul>
+  </div>
+</section>
+
+<div class="proto-bar proto"><button type="button" onclick="toggleMobile()">📱 Xem bản mobile (390px)</button></div>
+<div class="proto-panel proto" id="mobilePanel" hidden onclick="if(event.target===this)toggleMobile()"><iframe id="mobileFrame" title="Bản xem trước mobile"></iframe></div>
+
+<script>
+document.documentElement.lang='vi';
+if(document.documentElement.hasAttribute('data-frame')){document.body.classList.add('in-frame')}
+function toggleMenu(b){const n=document.getElementById('primary-nav');const o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)}
+document.querySelectorAll('nav.primary > ul > li > button').forEach(b=>b.addEventListener('click',()=>{const e=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!e);b.nextElementSibling.style.display=e?'':'block'}));
+function toggleMobile(){const p=document.getElementById('mobilePanel');if(p.hidden){const html='<!doctype html><html lang="vi" data-frame="1">'+document.documentElement.innerHTML+'</html>';document.getElementById('mobileFrame').srcdoc=html;p.hidden=false}else{p.hidden=true}}
+</script>
+
+</body>
+</html>
