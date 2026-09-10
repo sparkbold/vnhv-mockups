@@ -5,3 +5,4 @@ public/admin/
 tina/__generated__/
 .env
 .DS_Store
+Claude outputs/
