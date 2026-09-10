@@ -12,7 +12,7 @@ Open `index.html` (or the GitHub Pages site) to pick a direction. Each page has 
 
 **Palette (school uniform colours):** navy `#1F3A5F` / `#14273F`, bamboo green `#2E7D4F`, logo gold `#E0A400` (accent only), rice paper `#FBFAF7`. No black.
 
-Full plan (three-audit comparison, roadmap, backlog, checklists): [`docs/vnhv-rebuild-plan.md`](docs/vnhv-rebuild-plan.md).
+Full plan (three-audit comparison, roadmap, backlog, checklists): [PDF](docs/vnhv-rebuild-plan.pdf) · [Markdown](docs/vnhv-rebuild-plan.md).
 
 ## Licence
 
