@@ -1,4 +1,6 @@
-<!doctype html>
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
 <html lang="vi">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -25,11 +27,11 @@ a.card span{font-size:.95rem;color:#4E607A}
 <h1>Trường Việt Ngữ Hùng Vương — ba hướng thiết kế trang chủ</h1>
 <p class="lead">Bản mẫu (prototype) responsive để ban điều hành so sánh. Mỗi trang có nút “📱 Xem bản mobile” và bảng trạng thái tương tác ở cuối. Nội dung chưa có thật được đánh dấu [PLACEHOLDER].</p>
 <div class="grid">
-  <a class="card" href="a-evolutionary.html" style="--c:#E0A400"><b>A — Evolutionary Refresh</b><span>Giữ cấu trúc quen thuộc và logo vàng; nền navy thay đen; sửa hero, tương phản và mobile.</span></a>
-  <a class="card" href="b-conversion.html" style="--c:#2E7D4F"><b>B — Conversion-Focused</b><span>Màn hình đầu trả lời học gì · cho ai · khi nào · học phí · ghi danh. Xanh tre cho hành động chính. Hướng được đề xuất.</span></a>
-  <a class="card" href="c-bold.html" style="--c:#1F3A5F"><b>C — Bold Modern Rebuild</b><span>Chữ Lora cỡ lớn, nền navy đậm, dải hành trình 40 năm, khối song ngữ.</span></a>
+  <a class="card" href={base+"/a"} style="--c:#E0A400"><b>A — Evolutionary Refresh</b><span>Giữ cấu trúc quen thuộc và logo vàng; nền navy thay đen; sửa hero, tương phản và mobile.</span></a>
+  <a class="card" href={base+"/b"} style="--c:#2E7D4F"><b>B — Conversion-Focused</b><span>Màn hình đầu trả lời học gì · cho ai · khi nào · học phí · ghi danh. Xanh tre cho hành động chính. Hướng được đề xuất.</span></a>
+  <a class="card" href={base+"/c"} style="--c:#1F3A5F"><b>C — Bold Modern Rebuild</b><span>Chữ Lora cỡ lớn, nền navy đậm, dải hành trình 40 năm, khối song ngữ.</span></a>
 </div>
-<p class="note">Kế hoạch đầy đủ (đối chiếu 3 audit, lộ trình, backlog): <a href="docs/vnhv-rebuild-plan.pdf">docs/vnhv-rebuild-plan.pdf</a> (PDF) · <a href="docs/vnhv-rebuild-plan.md">Markdown</a>. Bảng màu: navy #1F3A5F / #14273F, xanh tre #2E7D4F, vàng logo #E0A400. Logo, tên trường và trích dẫn học sinh thuộc về Trường Việt Ngữ Hùng Vương.</p>
+<p class="note">Thử CMS: <a href={base+"/decap"}>Decap CMS</a> · <a href={base+"/tina"}>Tina CMS</a> (xem README).<br>Kế hoạch đầy đủ (đối chiếu 3 audit, lộ trình, backlog): <a href={base+"/docs/vnhv-rebuild-plan.md"}>docs/vnhv-rebuild-plan.md</a>. Bảng màu: navy #1F3A5F / #14273F, xanh tre #2E7D4F, vàng logo #E0A400. Logo, tên trường và trích dẫn học sinh thuộc về Trường Việt Ngữ Hùng Vương.</p>
 </main>
 </body>
 </html>

@@ -1,0 +1,62 @@
+{
+  "timeline": [
+    {
+      "year": "1986",
+      "text": "Một nhóm sinh viên Đại học Houston và Rice mở lớp đầu tiên tại Rice với khoảng 30 học sinh."
+    },
+    {
+      "year": "1988",
+      "text": "Chuyển về University of St. Thomas khi số học sinh tăng."
+    },
+    {
+      "year": "[năm]",
+      "text": "[PLACEHOLDER — xác nhận năm chuyển về HCC Central]"
+    },
+    {
+      "year": "2016",
+      "text": "Kỷ niệm 30 năm; khởi đầu chương trình Học Bổng Phụ Giáo."
+    },
+    {
+      "year": "2026",
+      "text": "40 năm: 279 học sinh, 41 thầy cô, 22 lớp. Dạ tiệc kỷ niệm 24/10 tại Ocean Palace."
+    }
+  ],
+  "heroImage": "",
+  "founded": 1986,
+  "facebook": "https://www.facebook.com/VietNguHungVuong/",
+  "ein": "76-0322140",
+  "logo": "/uploads/vnhv-logo.png",
+  "name": "Trường Việt Ngữ Hùng Vương",
+  "poBox": "PO Box 721111, Houston, TX 77272-1111",
+  "phoneTel": "+12812218018",
+  "phone": "(281) 221-8018",
+  "tagline": "Bảo tồn văn hoá Việt Nam tại Houston từ 1986",
+  "principalQuote": "Chúng tôi rất tự hào về các học sinh, thầy cô và nền tảng văn hoá đã xây dựng gần 40 năm tại Trường Việt Ngữ Hùng Vương ở Houston.",
+  "hours": "Chủ nhật 9:00–12:00",
+  "messageEn": "We are a volunteer-run non-profit. Everything the school does is purely cultural and educational; every teacher is a volunteer, and the school is funded by tuition and donations.",
+  "nameEn": "Hung Vuong Vietnamese Language & Cultural School",
+  "address": "1300 Holman St, Houston, TX 77004",
+  "parking": "Đậu xe: lot 7, 12 hoặc garage P (Alabama St)",
+  "registration": {
+    "openingDayLong": "16 tháng 8, 2026",
+    "latePrice": 230,
+    "openingDay": "16/8/2026",
+    "earlyPrice": 200,
+    "open": true,
+    "openingDayEn": "Aug 16, 2026",
+    "lateWindow": "từ 1/7 đến 14/8",
+    "earlyDeadline": "30/6",
+    "year": "2026-2027"
+  },
+  "principalName": "Thầy Hiệu trưởng Phạm Thế Vượng",
+  "messageVi": "Chúng tôi là một hội đoàn vô vị lợi. Sinh hoạt của trường chỉ thuần túy về văn hóa và giáo dục. Tất cả các thầy cô đều là tình nguyện viên; nguồn tài chánh của trường là từ học phí và quyên tặng.",
+  "room": "Building G, phòng 112",
+  "email": "support@vnhv.org",
+  "stats": {
+    "students": 279,
+    "teachers": 41,
+    "classes": 22,
+    "years": 40
+  },
+  "campus": "HCC Central"
+}

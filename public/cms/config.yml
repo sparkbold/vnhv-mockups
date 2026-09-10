@@ -1,0 +1,139 @@
+# Decap CMS — thử nghiệm cho VNHV mock-ups
+# Chạy thử tại máy: `npm run dev` (cửa sổ 1) + `npm run cms` (cửa sổ 2) → mở http://localhost:4321/vnhv-mockups/decap
+# Khi dùng thật trên GitHub Pages cần một OAuth provider (Netlify hoặc Cloudflare Worker) — xem README.
+backend:
+  name: github
+  repo: sparkbold/vnhv-mockups
+  branch: main
+  commit_messages:
+    create: "content: thêm {{collection}} “{{slug}}”"
+    update: "content: cập nhật {{collection}} “{{slug}}”"
+    delete: "content: xoá {{collection}} “{{slug}}”"
+    uploadMedia: "media: thêm {{path}}"
+    deleteMedia: "media: xoá {{path}}"
+local_backend: true
+site_url: https://sparkbold.github.io/vnhv-mockups
+display_url: https://sparkbold.github.io/vnhv-mockups
+logo_url: /vnhv-mockups/uploads/vnhv-logo.png
+media_folder: "public/uploads"
+public_folder: "/uploads"
+slug: { encoding: "ascii", clean_accents: true }
+
+collections:
+  - name: settings
+    label: "Cài đặt trường"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: site
+        label: "Thông tin chung, học phí, số liệu"
+        file: src/content/settings/site.json
+        fields:
+          - { name: name, label: "Tên trường", widget: string }
+          - { name: nameEn, label: "Tên tiếng Anh", widget: string }
+          - { name: tagline, label: "Khẩu hiệu", widget: string }
+          - { name: logo, label: "Logo", widget: image, required: false }
+          - { name: heroImage, label: "Ảnh hero trang chủ", widget: image, required: false, hint: "Ảnh thật, ngang 3:2 hoặc 4:3, ≥1200px, đã có giấy đồng ý" }
+          - { name: phone, label: "Điện thoại", widget: string }
+          - { name: phoneTel, label: "Điện thoại (dạng tel:, ví dụ +12812218018)", widget: string }
+          - { name: email, label: "Email", widget: string }
+          - { name: hours, label: "Giờ học", widget: string }
+          - { name: campus, label: "Cơ sở", widget: string }
+          - { name: room, label: "Toà nhà / phòng", widget: string }
+          - { name: address, label: "Địa chỉ", widget: string }
+          - { name: parking, label: "Đậu xe", widget: string }
+          - { name: poBox, label: "Hộp thư", widget: string }
+          - { name: ein, label: "EIN", widget: string }
+          - { name: facebook, label: "Facebook", widget: string }
+          - { name: founded, label: "Năm thành lập", widget: number, value_type: int }
+          - label: "Số liệu"
+            name: stats
+            widget: object
+            fields:
+              - { name: students, label: "Học sinh", widget: number, value_type: int }
+              - { name: teachers, label: "Thầy cô", widget: number, value_type: int }
+              - { name: classes, label: "Lớp học", widget: number, value_type: int }
+              - { name: years, label: "Năm hoạt động", widget: number, value_type: int }
+          - label: "Ghi danh"
+            name: registration
+            widget: object
+            fields:
+              - { name: year, label: "Niên khóa", widget: string }
+              - { name: open, label: "Đang mở ghi danh", widget: boolean }
+              - { name: earlyPrice, label: "Học phí sớm ($)", widget: number, value_type: int }
+              - { name: earlyDeadline, label: "Hạn sớm (vd 30/6)", widget: string }
+              - { name: latePrice, label: "Học phí sau ($)", widget: number, value_type: int }
+              - { name: lateWindow, label: "Khoảng sau (vd từ 1/7 đến 14/8)", widget: string }
+              - { name: openingDay, label: "Khai giảng (vd 16/8/2026)", widget: string }
+              - { name: openingDayLong, label: "Khai giảng (chữ)", widget: string }
+              - { name: openingDayEn, label: "Khai giảng (EN)", widget: string }
+          - { name: principalQuote, label: "Lời thầy Hiệu trưởng", widget: text }
+          - { name: principalName, label: "Tên thầy Hiệu trưởng", widget: string }
+          - { name: messageVi, label: "Thông điệp (VI)", widget: text }
+          - { name: messageEn, label: "Thông điệp (EN)", widget: text }
+          - label: "Hành trình 40 năm"
+            name: timeline
+            widget: list
+            fields:
+              - { name: year, label: "Năm", widget: string }
+              - { name: text, label: "Mô tả", widget: text }
+
+  - name: programs
+    label: "Chương trình học"
+    folder: src/content/programs
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { name: title, label: "Tên chương trình", widget: string }
+      - { name: order, label: "Thứ tự", widget: number, value_type: int }
+      - { name: ages, label: "Nhãn tuổi/lớp (vd MG–5)", widget: string }
+      - { name: meta, label: "Mô tả ngắn", widget: string }
+      - { name: status, label: "Trạng thái", widget: select, options: [{label: "Còn chỗ", value: open}, {label: "Sắp mở", value: soon}, {label: "Xác nhận chỗ", value: confirm}, {label: "Đã đóng", value: closed}], default: open }
+      - { name: image, label: "Ảnh", widget: image, required: false }
+      - { name: bullets, label: "Điểm chính (3 dòng)", widget: list, field: { name: item, label: "Dòng", widget: string } }
+      - { name: body, label: "Đoạn giới thiệu", widget: text }
+
+  - name: events
+    label: "Sự kiện"
+    folder: src/content/events
+    create: true
+    extension: md
+    fields:
+      - { name: title, label: "Tên sự kiện", widget: string }
+      - { name: theme, label: "Chủ đề", widget: string, required: false }
+      - { name: date, label: "Ngày", widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { name: dateText, label: "Ngày (chữ, hiển thị)", widget: string }
+      - { name: timeText, label: "Giờ", widget: string }
+      - { name: venue, label: "Địa điểm", widget: string }
+      - { name: address, label: "Địa chỉ", widget: string }
+      - { name: prices, label: "Giá vé", widget: string, required: false }
+      - { name: ticketUrl, label: "Link mua vé (Zeffy)", widget: string, required: false }
+      - { name: contactEmail, label: "Email liên lạc", widget: string, required: false }
+      - { name: featured, label: "Nổi bật trên trang chủ", widget: boolean, default: false }
+      - { name: image, label: "Poster", widget: image, required: false }
+      - { name: body, label: "Mô tả", widget: text }
+
+  - name: testimonials
+    label: "Chia sẻ của học sinh"
+    folder: src/content/testimonials
+    create: true
+    extension: md
+    fields:
+      - { name: name, label: "Tên", widget: string }
+      - { name: grade, label: "Lớp", widget: string }
+      - { name: order, label: "Thứ tự", widget: number, value_type: int, default: 99 }
+      - { name: placeholder, label: "Chỉ là chỗ giữ (chưa có trích dẫn thật)", widget: boolean, default: false }
+      - { name: body, label: "Trích dẫn", widget: text }
+
+  - name: news
+    label: "Tin tức & thông báo"
+    folder: src/content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    fields:
+      - { name: title, label: "Tiêu đề", widget: string }
+      - { name: date, label: "Ngày", widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { name: category, label: "Loại", widget: select, options: ["Tin tức", "Thông báo", "Sinh hoạt"], default: "Tin tức" }
+      - { name: body, label: "Nội dung", widget: markdown }
