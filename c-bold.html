@@ -166,7 +166,7 @@ footer.site .legal{border-top:1px solid #3A5A85;padding:1rem 0;font-size:.85rem;
   body{font-size:16px;padding-bottom:80px}
   .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
   nav.primary{display:none;position:absolute;left:0;right:0;top:100%;background:var(--ink);padding:1rem;border-top:1px solid #2F5384}
-  nav.primary.open{display:block}
+  nav.primary.open{display:block;max-height:calc(100dvh - 88px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:1.5rem}
   nav.primary ul{flex-direction:column}
   nav.primary a,nav.primary button{display:flex;padding:.9rem .5rem;font-size:1.05rem;width:100%}
   nav.primary .sub{position:static;box-shadow:none;background:#1A3355;border-top:0;padding-left:1rem}
