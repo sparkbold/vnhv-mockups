@@ -14,7 +14,7 @@
     "astro": "^7.3.2"
   },
   "devDependencies": {
-    "@tinacms/cli": "^2.7.0",
+    "@tinacms/cli": "^3.0.0",
     "decap-server": "^3.11.2",
     "tinacms": "^3.13.0"
   }
