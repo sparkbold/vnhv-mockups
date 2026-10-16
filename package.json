@@ -16,6 +16,6 @@
   "devDependencies": {
     "@tinacms/cli": "^2.7.0",
     "decap-server": "^3.11.2",
-    "tinacms": "^3.13.0"
+    "tinacms": "^3.14.4"
   }
 }
